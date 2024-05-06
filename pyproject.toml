@@ -13,6 +13,7 @@ python = "^3.12"
 Django = "^5.0.4"
 psycopg2 = "^2.9.9"
 python-dotenv = "^1.0.1"
+dj-database-url = "^2.1.0"
 
 
 [build-system]
