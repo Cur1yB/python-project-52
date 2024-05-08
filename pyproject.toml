@@ -15,6 +15,7 @@ psycopg2 = "^2.9.9"
 python-dotenv = "^1.0.1"
 dj-database-url = "^2.1.0"
 gunicorn = "^22.0.0"
+django-bootstrap5 = "^24.2"
 
 
 [build-system]
