@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 
 from labels.models import Label
 from statuses.models import Status
+from tasks.models import Task
 from users.models import User
 
 
@@ -73,3 +74,27 @@ class TestLabels(TestCase):
 
         self.assertEqual(Label.objects.count(), total_labels - 1)
 
+    def test_delete_task_label(self):
+        total_labels = Label.objects.count()
+
+        task = Task.objects.create(
+            name="test",
+            author=self.user,
+            status=self.status,
+        )
+        task.labels.add(self.label_obj)
+
+        self.client.force_login(user=self.user)
+        response = self.client.post(
+            reverse_lazy("labels:delete", kwargs={"pk": self.label_obj.id})
+        )
+
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(
+            str(messages[0]),
+            "Невозможно удалить метку, потому что она используется",
+        )
+
+        self.assertRedirects(response, expected_url=reverse_lazy("labels:index"))
+        self.assertEqual(Label.objects.count(), total_labels)

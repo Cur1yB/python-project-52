@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+   <h1 class="my-4"> {{ title }}</h1>
+    <a class="btn btn-primary mb-3" href="{% url 'tasks:create' %}">Создать задачу</a>
+{% include 'tasks/filter.html' %}
+    <table class = "table table-striped">
+        <tr>
+            <th>{{ ID }}</th>
+            <th>{{ name }}</th>
+            <th>{{ status }}</th>
+            <th>{{ author }}</th>
+            <th>{{ executor }}</th>
+            <th>{{ created_at }}</th>
+            <th></th>
+        </tr>
+        {% for task in tasks %}
+            <tr>
+                <td> {{ task.id }} </td>
+                <td><a href = "{% url 'tasks:detail' task.id %}">{{ task.name }}</a></td>
+                <td> {{ task.status.name }} </td>
+                <td> {{ task.author }} </td>
+                <td>
+                    {% if task.executor %}
+                        {{ task.executor }}
+                    {% endif %}
+                </td>
+                <td> {{ task.created_at }} </td>
+                <td>
+                    <a href="{% url 'tasks:update' task.id %}">{{ edit }}</a>
+                    <br>
+                    <a href="{% url 'tasks:delete' task.id %}">{{ delete }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -8,5 +8,6 @@ dependencies = [
     "dj-database-url>=3.1.2",
     "django>=6.0.3",
     "django-bootstrap4>=26.1",
+    "django-filter>=25.2",
     "dotenv>=0.9.9",
 ]

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+<h1 class="my-4"> {{ title }}</h1>
+<form method="post">
+  {% csrf_token %}
+  <p>{{confirm}} {{ task.name }}?</p>
+  {% bootstrap_button submit button_type="submit" button_class="btn btn-danger" %}
+</form>
+{% endblock %}

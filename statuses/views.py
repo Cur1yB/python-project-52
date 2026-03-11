@@ -8,6 +8,7 @@ import os
 
 from .forms import StatusForm
 from .models import Status
+from .mixins import CheckCascadeMixin
 
 
 class StatusIndexView(LoginRequiredMixin, ListView):
@@ -53,7 +54,7 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
 
 
-class StatusDeleteView(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+class StatusDeleteView(LoginRequiredMixin, CheckCascadeMixin, SuccessMessageMixin, DeleteView):
     model = Status
     context_object_name = "status"
     template_name = os.path.join("statuses", "delete.html")

@@ -3,21 +3,7 @@
 
 {% block content %}
 <div class="card ">
-  <div class="card-body p-5 bg-light center">
-    <div class="display-4">{{ title }}</div>
-    <p class="lead">{{ description }}</p>
-    <hr>
-        {% if request.user.is_authenticated %}
-      <div>
-          <a class="btn btn-danger btn-lg" href="#">Выход</a>
-      </div>
-        {% else %}
-      <div>
-          <a class="btn btn-info btn-lg" href="#">Вход</a>
-          <a class="btn btn-success btn-lg" href="#">Регистрация</a>
-      </div>
-        {% endif %}
-  </div>
+  <h1>Добро пожаловать!</h1>
 </div>
 
 {% endblock %}

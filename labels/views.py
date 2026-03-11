@@ -8,6 +8,7 @@ from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .forms import LabelForm
 from .models import Label
+from .mixins import CheckCascadeMixin
 
 
 class IndexLabelView(LoginRequiredMixin, ListView):
@@ -49,7 +50,7 @@ class UpdateLabelView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Метка успешно изменена"
 
 
-class DeleteLabelView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class DeleteLabelView(LoginRequiredMixin, CheckCascadeMixin, SuccessMessageMixin, DeleteView):
     model = Label
     context_object_name = "label"
     template_name = os.path.join("labels", "delete.html")

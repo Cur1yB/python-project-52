@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+
+{% block content %}
+    <form method="post">
+    {% csrf_token %}
+        <h1 class="my-4"> {{ title }}</h1>
+        <div class = "card">
+            <div class="card-header bg-secondary text-white">
+                <h2>Имя {{ task.name }}</h2>
+            </div>
+            <div class="card-body bg-light">
+                <p>Описание {{ task.description }}</p>
+                <hr>
+                <div class="container">
+                    <div class="row p-1">
+                        <div class="col">{{ author }}</div>
+                        <div class="col">{{ task.author }}</div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col">{{ executor }}</div>
+                        <div class="col">{{ task.executor }}</div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col">{{ status }}</div>
+                        <div class="col">{{ task.status }}</div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col">{{ created }}</div>
+                        <div class="col">{{ task.created_at }}</div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col">
+                            <h6>{{ labels }}:</h6>
+                        <ul>
+                        {% for label in task.labels.all %}
+                        <li> {{ label }} </li>
+                            {% empty %}
+                            Нет меток
+                        {% endfor %}
+                        </ul>
+                        </div>
+                    </div>
+                    <div class="row p-1">
+                        <div class="col">
+                            <a href="{% url 'tasks:update' task.id %}">{{ edit }}</a>
+                        <br>
+                            <a href="{% url 'tasks:delete' task.id %}">{{ delete }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
