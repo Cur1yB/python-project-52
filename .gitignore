@@ -1,12 +1,10 @@
-*.egg-info
-poetry.txt
+# Python-generated files
 __pycache__/
+*.py[oc]
+build/
 dist/
-*.pyc
-.venv/
-.coverage
-coverage.xml
-.pytest_cache/
-staticfiles/
-.env
-postgres.txt
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv

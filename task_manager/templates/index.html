@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="card ">
+  <div class="card-body p-5 bg-light center">
+    <div class="display-4">{{ title }}</div>
+    <p class="lead">{{ description }}</p>
+    <hr>
+        {% if request.user.is_authenticated %}
+      <div>
+          <a class="btn btn-info btn-lg" href="#">{% trans 'User Profile' %}</a>
+          <a class="btn btn-danger btn-lg" href="#">{% trans 'Logout' %}</a>
+      </div>
+        {% else %}
+      <div>
+          <a class="btn btn-info btn-lg" href="#">{% trans 'Login' %}</a>
+          <a class="btn btn-success btn-lg" href="#">{% trans 'Registration' %}</a>
+      </div>
+        {% endif %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author"
+          content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+
+    <link rel="canonical"
+          href="https://getbootstrap.com/docs/4.5/examples/starter-template/">
+    <link rel="shortcut icon" href="#" />
+
+    <style>
+        body {
+            padding-top: 5rem;
+        }
+
+        .starter-template {
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+    </style>
+
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% load i18n %}
+    {% load static %}
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="{% url 'home' %}">{% trans 'Task Manager' %}</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:users' %}">{% trans 'Users' %}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+        {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'statuses' %}">{% trans 'Statuses' %}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'labels' %}">{% trans 'Labels' %}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'tasks' %}">{% trans 'Tasks' %}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+        {% endif %}
+        </ul>
+
+        {% if request.user.is_authenticated %}
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item mr-sm-2">
+                <a class="nav-link" href="#">{{ request.user.username }}</a>
+            </li>
+            <li class="nav-item mr-sm-2">
+                <a class="nav-link" href="#">{% trans 'Logout' %}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        {% else %}
+        <ul class="navbar-nav my-2 my-lg-0">
+            <li class="nav-item mr-sm-2">
+                <a class="nav-link" href="#">{% trans 'Login' %}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item my-2 my-sm-0">
+                <a class="nav-link" href="#">{% trans 'Registration' %}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        {% endif %}
+
+    </div>
+</nav>
+
+<main role="main" class="container">
+    {% bootstrap_messages %}
+    {% block content %}
+
+    {% endblock %}
+</main>
+
+</body>
+
+</html>

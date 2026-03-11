@@ -1,13 +1,8 @@
-install:
-	poetry install
+dev:
+	uv run python3 manage.py runserver
 
-migrate:
-	poetry run python manage.py migrate
+makemigr:
+	uv run python3 manage.py makemigrations
 
-collectstatic:
-	poetry run python manage.py collectstatic --noinput
-
-deploy: install migrate collectstatic
-
-run:
-	python3 manage.py runserver
+migr:
+	uv run python3 manage.py migrate

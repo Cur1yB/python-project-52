@@ -1,23 +1,12 @@
-[tool.poetry]
+[project]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
-authors = ["Cur1yB <alexandr.ignatev1996@gmail.com>"]
+description = "Add your description here"
 readme = "README.md"
-packages = [
-  { include = "task_manager" },
+requires-python = ">=3.14"
+dependencies = [
+    "dj-database-url>=3.1.2",
+    "django>=6.0.3",
+    "django-bootstrap4>=26.1",
+    "dotenv>=0.9.9",
 ]
-
-[tool.poetry.dependencies]
-python = "^3.10"
-Django = "^5.0.4"
-psycopg2 = "^2.9.9"
-python-dotenv = "^1.0.1"
-dj-database-url = "^2.1.0"
-gunicorn = "^22.0.0"
-django-bootstrap5 = "^24.2"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
