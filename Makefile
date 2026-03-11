@@ -6,3 +6,6 @@ makemigr:
 
 migr:
 	uv run python3 manage.py migrate
+
+test_:
+	uv run python3 manage.py test

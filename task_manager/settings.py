@@ -138,9 +138,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+LOGIN_REQUIRED_MESSAGE = "Вы не авторизованы! Пожалуйста, выполните вход."
+
 ROLLBAR = {
     'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN'),
     'environment': 'development' if DEBUG else 'production',
     'code_version': '1.0',
     'root': BASE_DIR,
 }
+
