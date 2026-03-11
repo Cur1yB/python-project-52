@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+   <h1 class="my-4"> {{ title }}</h1>
+   <a class="btn btn-primary mb-3" href="{% url 'labels:create' %}">{{ submit }}</a>
+    <table class = "table table-striped">
+		<thead>
+        <tr>
+            <th>{{ ID }}</th>
+            <th>{{ name }}</th>
+            <th>{{ created_at }}</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+        {% for label in labels %}
+            <tr>
+                <td> {{ label.id }}</td>
+                <td> {{ label.name }}</td>
+                <td> {{ label.created_at }}</td>
+                <td>
+                    <a href = "{% url 'labels:update' label.id %}">{{ edit }}</a><br>
+                    <a href = "{% url 'labels:delete' label.id %}">{{ delete }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+		</tbody>
+    </table>
+{% endblock %}

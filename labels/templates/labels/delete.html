@@ -5,7 +5,7 @@
 <h1 class="my-4">{{ title }}</h1>
 <form method="post">
   {% csrf_token %}
-  <p>{{confirm}} {{ status.name }}?</p>
+  <p>{{confirm}} {{ label.name }}?</p>
   {% bootstrap_button submit button_type="submit" button_class="btn btn-danger" %}
 </form>
 {% endblock %}
