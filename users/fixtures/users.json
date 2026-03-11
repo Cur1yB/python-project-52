@@ -1,0 +1,20 @@
+[
+{
+  "model": "users.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1200000$0CEQZAyTbBb9CdFRqvMV4j$hbqsxzJKFeVARpWpzNZFdj6LLrQv9gIiH0yywgItKJg=",
+    "last_login": "2026-03-11T09:19:20.293Z",
+    "is_superuser": false,
+    "username": "sanya9652@gmail.com",
+    "first_name": "Степан",
+    "last_name": "Рязановdddd",
+    "email": "",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2026-03-11T09:19:15.743Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

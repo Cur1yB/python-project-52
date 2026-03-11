@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+<h1 class="my-4">{{ title }}</h1>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>{{ ID }}</th>
+        <th>{{ username }}</th>
+        <th>{{ full_name }}</th>
+        <th>{{ created_at }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.get_full_name }}</td>
+          <td>{{ user.date_joined }}</td>
+          <td>
+            <a href="{% url 'users:update' user.id %}">{{ edit }}</a>
+            <br>
+            <a href="{% url 'users:delete' user.id %}">{{ delete }}</a>
+          </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {% endblock %}

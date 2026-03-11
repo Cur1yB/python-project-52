@@ -4,9 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author"
-          content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
     <title>{% block title %}{{ title }}{% endblock %}</title>
 
@@ -35,7 +32,7 @@
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="{% url 'home' %}">{% trans 'Task Manager' %}</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Менеджер задач</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarsExampleDefault"
@@ -47,20 +44,20 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'users:users' %}">{% trans 'Users' %}<span
+                <a class="nav-link" href="{% url 'users:users' %}">Пользователи<span
                         class="sr-only">(current)</span></a>
             </li>
         {% if request.user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'statuses' %}">{% trans 'Statuses' %}<span
+                <a class="nav-link" href="#">Статусы<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'labels' %}">{% trans 'Labels' %}<span
+                <a class="nav-link" href="#">Метки<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'tasks' %}">{% trans 'Tasks' %}<span
+                <a class="nav-link" href="#">Задачи<span
                         class="sr-only">(current)</span></a>
             </li>
         {% endif %}
@@ -72,18 +69,18 @@
                 <a class="nav-link" href="#">{{ request.user.username }}</a>
             </li>
             <li class="nav-item mr-sm-2">
-                <a class="nav-link" href="#">{% trans 'Logout' %}<span
+                <a class="nav-link" href="{% url 'logout' %}">Выход<span
                         class="sr-only">(current)</span></a>
             </li>
         </ul>
         {% else %}
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item mr-sm-2">
-                <a class="nav-link" href="#">{% trans 'Login' %}<span
+                <a class="nav-link" href="{% url 'login' %}">Вход<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item my-2 my-sm-0">
-                <a class="nav-link" href="#">{% trans 'Registration' %}<span
+                <a class="nav-link" href="{% url 'users:create' %}">Регистрация<span
                         class="sr-only">(current)</span></a>
             </li>
         </ul>

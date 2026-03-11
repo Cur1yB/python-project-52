@@ -10,13 +10,12 @@
     <hr>
         {% if request.user.is_authenticated %}
       <div>
-          <a class="btn btn-info btn-lg" href="#">{% trans 'User Profile' %}</a>
-          <a class="btn btn-danger btn-lg" href="#">{% trans 'Logout' %}</a>
+          <a class="btn btn-danger btn-lg" href="#">Выход</a>
       </div>
         {% else %}
       <div>
-          <a class="btn btn-info btn-lg" href="#">{% trans 'Login' %}</a>
-          <a class="btn btn-success btn-lg" href="#">{% trans 'Registration' %}</a>
+          <a class="btn btn-info btn-lg" href="#">Вход</a>
+          <a class="btn btn-success btn-lg" href="#">Регистрация</a>
       </div>
         {% endif %}
   </div>
