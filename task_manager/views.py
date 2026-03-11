@@ -20,6 +20,7 @@ class LoginUser(LoginView):
         return super().form_valid(form)
 
 class LogoutUser(LogoutView):
+    template_name = os.path.join("logout.html")
     reverse_page = reverse_lazy("home")
 
     def dispatch(self, request, *args, **kwargs):
