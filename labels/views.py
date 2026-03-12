@@ -30,7 +30,6 @@ class IndexLabelView(LoginRequiredMixin, ListView):
 class CreateLabelView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = LabelForm
     template_name = os.path.join("labels", "create.html")
-    success_url = reverse("labels:index")
     extra_context = {
         "title": "Создать метку",
         "submit": "Создать",
