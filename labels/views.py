@@ -42,7 +42,7 @@ class UpdateLabelView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelForm
     template_name = os.path.join("labels", "create.html")
-    success_url = reverse("labels:update")
+    success_url = reverse("labels:index")
     extra_context = {
         "title": "Изменение метки",
         "submit": "Изменить",
