@@ -70,7 +70,9 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
 
 
-class TaskDeleteView(LoginRequiredMixin, AuthorRequireMixin, SuccessMessageMixin, DeleteView):
+class TaskDeleteView(
+    LoginRequiredMixin, AuthorRequireMixin, SuccessMessageMixin, DeleteView
+):
     model = Task
     template_name = os.path.join("tasks", "delete.html")
     context_object_name = "task"

@@ -13,7 +13,9 @@ class TestStatus(TestCase):
     def setUp(self):
         self.user = User.objects.order_by("pk").first()
         if self.user is None:
-            raise AssertionError("users.json не загрузился (нет пользователей).")
+            raise AssertionError(
+                "users.json не загрузился (нет пользователей)."
+            )
         self.status_obj = Status.objects.get(pk=1)
 
         self.status_data = {"name": "статус_обновлён"}
@@ -28,7 +30,10 @@ class TestStatus(TestCase):
         status_count = Status.objects.count()
 
         self.client.force_login(user=self.user)
-        response = self.client.post(reverse("statuses:create"), test_status_data)
+        response = self.client.post(
+            reverse("statuses:create"),
+            test_status_data
+        )
 
         self.assertRedirects(response, reverse("statuses:index"))
         test_status = Status.objects.latest("id")
@@ -67,7 +72,6 @@ class TestStatus(TestCase):
         self.assertEqual(str(messages[0]), "Статус успешно удален")
 
         self.assertEqual(Status.objects.count(), status_count - 1)
-
 
     def test_delete_task_status(self):
         status_count = Status.objects.count()

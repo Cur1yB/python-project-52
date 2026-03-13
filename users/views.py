@@ -2,7 +2,6 @@ from django.views.generic import (
     ListView,
     UpdateView,
     DeleteView,
-    DetailView,
     CreateView,
 )
 from django.contrib.auth import get_user_model
@@ -11,18 +10,21 @@ import os
 from .models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import UserCreateForm
-from .mixins import CustomLoginRequiredMixin, CheckChangePermissionMixin, ProtectDeleteMixin
+from .mixins import (
+    CustomLoginRequiredMixin,
+    CheckChangePermissionMixin,
+    ProtectDeleteMixin,
+)
 
 
 class UsersList(ListView):
     model = get_user_model()
-    template_name = os.path.join('users', 'index.html')
-    context_object_name = 'users'
+    template_name = os.path.join("users", "index.html")
+    context_object_name = "users"
     extra_context = {
         "edit": "Изменить",
         "delete": "Удалить",
     }
-
 
 
 class UserCreateView(SuccessMessageMixin, CreateView):

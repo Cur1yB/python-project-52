@@ -37,6 +37,7 @@ class CreateLabelView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     }
     success_message = "Метка успешно создана"
 
+
 class UpdateLabelView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelForm
@@ -49,7 +50,12 @@ class UpdateLabelView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = "Метка успешно изменена"
 
 
-class DeleteLabelView(LoginRequiredMixin, CheckCascadeMixin, SuccessMessageMixin, DeleteView):
+class DeleteLabelView(
+    LoginRequiredMixin,
+    CheckCascadeMixin,
+    SuccessMessageMixin,
+    DeleteView
+):
     model = Label
     context_object_name = "label"
     template_name = os.path.join("labels", "delete.html")
@@ -60,4 +66,5 @@ class DeleteLabelView(LoginRequiredMixin, CheckCascadeMixin, SuccessMessageMixin
         "confirm": "Вы уверены, что хотите удалить",
     }
     success_message = "Метка успешно удалена"
-    protected_error_message = "Невозможно удалить метку, потому что она используется"
+    protected_error_message = "Невозможно удалить метку, потому" \
+        " что она используется"

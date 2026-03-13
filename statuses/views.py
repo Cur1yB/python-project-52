@@ -54,7 +54,9 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
 
 
-class StatusDeleteView(LoginRequiredMixin, CheckCascadeMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(
+    LoginRequiredMixin, CheckCascadeMixin, SuccessMessageMixin, DeleteView
+):
     model = Status
     context_object_name = "status"
     template_name = os.path.join("statuses", "delete.html")
@@ -66,4 +68,5 @@ class StatusDeleteView(LoginRequiredMixin, CheckCascadeMixin, SuccessMessageMixi
     }
     success_message = "Статус успешно удален"
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
-    protected_error_message = "Невозможно удалить статус, потому что он используется"
+    protected_error_message = "Невозможно удалить статус, " \
+        "потому что он используется"

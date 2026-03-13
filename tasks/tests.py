@@ -42,7 +42,10 @@ class TestTask(TestCase):
         tasks_count = Task.objects.count()
 
         self.client.force_login(user=self.user)
-        response = self.client.post(reverse_lazy("tasks:create"), test_task_data)
+        response = self.client.post(
+            reverse_lazy("tasks:create"),
+            test_task_data
+        )
 
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse_lazy("tasks:index"))
@@ -85,7 +88,9 @@ class TestTask(TestCase):
         tasks_count = Task.objects.count()
 
         self.client.force_login(user=self.user)
-        response = self.client.post(reverse_lazy("tasks:delete", kwargs={"pk": task.id}))
+        response = self.client.post(
+            reverse_lazy("tasks:delete", kwargs={"pk": task.id})
+        )
 
         self.assertRedirects(response, reverse_lazy("tasks:index"))
         self.assertEqual(Task.objects.count(), tasks_count - 1)

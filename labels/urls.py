@@ -7,7 +7,7 @@ from labels.views import (
     UpdateLabelView,
 )
 
-app_name = 'labels'
+app_name = "labels"
 
 urlpatterns = [
     path("", IndexLabelView.as_view(), name="index"),

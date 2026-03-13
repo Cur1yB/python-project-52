@@ -4,8 +4,10 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
 import os
 
+
 class IndexView(TemplateView):
     template_name = os.path.join("index.html")
+
 
 class LoginUser(LoginView):
     template_name = os.path.join("login.html")
@@ -18,6 +20,7 @@ class LoginUser(LoginView):
     def form_valid(self, form):
         messages.info(self.request, "Вы залогинены")
         return super().form_valid(form)
+
 
 class LogoutUser(LogoutView):
     template_name = os.path.join("logout.html")

@@ -11,7 +11,9 @@ class UserCreateForm(UserCreationForm):
         self.fields["password2"].label = "Подтверждение пароля"
 
         self.fields["password1"].help_text = ""
-        self.fields["password2"].help_text = "Для подтверждения, введите, пожалуйста, тот же пароль ещё раз."
+        self.fields["password2"].help_text = (
+            "Для подтверждения, введите, пожалуйста, тот же пароль ещё раз."
+        )
 
     class Meta(UserCreationForm.Meta):
         model = User
