@@ -3,7 +3,7 @@ import os
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy as reverse
+from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .forms import LabelForm
@@ -29,20 +29,19 @@ class IndexLabelView(LoginRequiredMixin, ListView):
 
 class CreateLabelView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = LabelForm
-    template_name = os.path.join("labels", "create.html")
-    success_url = reverse("labels:create")
+    template_name = "labels/create.html"
+    success_url = reverse_lazy("labels:index")  # <-- правильно
     extra_context = {
         "title": "Создать метку",
         "submit": "Создать",
     }
     success_message = "Метка успешно создана"
 
-
 class UpdateLabelView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelForm
     template_name = os.path.join("labels", "create.html")
-    success_url = reverse("labels:index")
+    success_url = reverse_lazy("labels:index")
     extra_context = {
         "title": "Изменение метки",
         "submit": "Изменить",
@@ -54,7 +53,7 @@ class DeleteLabelView(LoginRequiredMixin, CheckCascadeMixin, SuccessMessageMixin
     model = Label
     context_object_name = "label"
     template_name = os.path.join("labels", "delete.html")
-    success_url = reverse("labels:index")
+    success_url = reverse_lazy("labels:index")
     extra_context = {
         "title": "Удаление метки",
         "submit": "Да, удалить",
