@@ -62,12 +62,3 @@ ALLOWED_HOSTS=127.0.0.1,localhost
 ROLLBAR_ACCESS_TOKEN='t0keN'
 ROLLBAR_ENVIRONMENT=production
 ```
-## Useful Make commands
-Typical commands (may vary depending on the Makefile):
-```bash
-make install   # install dependencies
-make migrate   # apply migrations
-make run       # run dev server
-make test      # run tests
-make lint      # run linters (if configured)
-```
