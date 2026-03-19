@@ -38,7 +38,8 @@ _SUCCESS_CREATED = "Статус успешно создан"
 _SUCCESS_UPDATED = "Статус успешно изменен"
 _SUCCESS_DELETED = "Статус успешно удален"
 
-_PROTECTED_ERROR_MESSAGE = "Невозможно удалить статус, " "потому что он используется"
+_PROTECTED_ERROR_MESSAGE = "Невозможно удалить статус, " \
+"потому что он используется"
 
 
 class StatusIndexView(LoginRequiredMixin, ListView):

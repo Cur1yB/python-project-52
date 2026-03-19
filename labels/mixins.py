@@ -5,7 +5,8 @@ from django.shortcuts import redirect
 
 class CheckCascadeMixin:
     protected_error_message = (
-        "Невозможно удалить метку, " "потому что она используется."
+        "Невозможно удалить метку, "
+        "потому что она используется."
     )
 
     def post(self, request, *args, **kwargs):

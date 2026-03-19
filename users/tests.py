@@ -66,7 +66,7 @@ class TestUser(TestCase):
         self.assertEqual(self.user.username, "pupa")
 
     def test_delete_user(self):
-        user = User.objects.create_user(username="todelete", password="Pass123@")
+        user = User.objects.create_user(username="todelete", password="Pass123@") # NOSONAR
         total_users = User.objects.count()
 
         self.client.force_login(user=user)

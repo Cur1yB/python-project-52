@@ -5,7 +5,8 @@ from django.shortcuts import redirect
 
 class CheckCascadeMixin:
     protected_error_message = (
-        "Невозможно удалить статус, " "потому что он используется."
+        "Невозможно удалить статус, "
+        "потому что он используется."
     )
 
     def post(self, request, *args, **kwargs):
