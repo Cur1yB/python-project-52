@@ -5,6 +5,7 @@ description = "Task Manager for manage tasks"
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
+    "coverage>=7.13.5",
     "dj-database-url>=3.1.2",
     "django>=5.2.5",
     "django-bootstrap4>=26.1",
