@@ -21,3 +21,7 @@ collectstatic:
 .PHONY: build
 build:
 	./build.sh
+
+test-coverage:
+	uv run coverage run --source='.' manage.py test
+	uv run coverage xml -o coverage.xml
