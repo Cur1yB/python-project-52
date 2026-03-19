@@ -19,6 +19,21 @@ from tasks.mixins import AuthorRequireMixin
 from tasks.models import Task
 from users.models import User
 
+_UI_ACTIONS = {
+    "edit": "Изменить",
+    "delete": "Удалить",
+}
+
+_TASK_LIST_COLUMNS = {
+    "ID": "ID",
+    "name": "Имя",
+    "status": "Статус",
+    "author": "Автор",
+    "executor": "Исполнитель",
+    "select": "Выбрать",
+    "created_at": "Дата создания",
+}
+
 
 class TaskIndexView(LoginRequiredMixin, FilterView, ListView):
     model = Task
@@ -27,15 +42,8 @@ class TaskIndexView(LoginRequiredMixin, FilterView, ListView):
     context_object_name = "tasks"
     extra_context = {
         "title": "Задачи",
-        "ID": "ID",
-        "name": "Имя",
-        "status": "Статус",
-        "author": "Автор",
-        "executor": "Исполнитель",
-        "edit": "Изменить",
-        "delete": "Удалить",
-        "select": "Выбрать",
-        "created_at": "Дата создания",
+        **_TASK_LIST_COLUMNS,
+        **_UI_ACTIONS,
     }
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
 
@@ -64,7 +72,7 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_url = reverse("tasks:index")
     extra_context = {
         "title": "Изменение задачи",
-        "submit": "Изменить",
+        "submit": _UI_ACTIONS["edit"],  # <-- нет литерала "Изменить"
     }
     success_message = "Задача успешно изменена"
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
@@ -96,7 +104,6 @@ class TaskDetail(LoginRequiredMixin, DetailView):
         "status": "Статус",
         "created": "Дата создания",
         "labels": "Метки",
-        "edit": "Изменить",
-        "delete": "Удалить",
+        **_UI_ACTIONS,  # <-- "edit"/"delete" берутся отсюда
     }
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE

@@ -66,19 +66,11 @@ class TestUser(TestCase):
         self.assertEqual(self.user.username, "pupa")
 
     def test_delete_user(self):
-        user = User.objects.create_user(
-            username="todelete",
-            password="Pass123@"
-        )
+        user = User.objects.create_user(username="todelete", password="Pass123@")
         total_users = User.objects.count()
 
         self.client.force_login(user=user)
-        response = self.client.post(
-            reverse(
-                "users:delete",
-                kwargs={"pk": user.id}
-            )
-        )
+        response = self.client.post(reverse("users:delete", kwargs={"pk": user.id}))
 
         self.assertRedirects(response, reverse("users:users"))
         self.assertEqual(User.objects.count(), total_users - 1)

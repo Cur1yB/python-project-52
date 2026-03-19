@@ -7,8 +7,37 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from .forms import LabelForm
-from .models import Label
 from .mixins import CheckCascadeMixin
+from .models import Label
+
+_INDEX_PAGE = "labels:index"
+
+_UI_ACTIONS = {
+    "edit": "Изменить",
+    "delete": "Удалить",
+}
+
+_UI_COMMON = {
+    "ID": "ID",
+    "name": "Имя",
+    "created_at": "Дата создания",
+}
+
+_TITLE_INDEX = "Метки"
+_TITLE_CREATE = "Создать метку"
+_TITLE_UPDATE = "Изменение метки"
+_TITLE_DELETE = "Удаление метки"
+
+_SUBMIT_CREATE = "Создать"
+_SUBMIT_DELETE = "Да, удалить"
+
+_CONFIRM_DELETE = "Вы уверены, что хотите удалить"
+
+_SUCCESS_CREATED = "Метка успешно создана"
+_SUCCESS_UPDATED = "Метка успешно изменена"
+_SUCCESS_DELETED = "Метка успешно удалена"
+
+_PROTECTED_ERROR_MESSAGE = "Невозможно удалить метку, потому что она используется"
 
 
 class IndexLabelView(LoginRequiredMixin, ListView):
@@ -16,55 +45,54 @@ class IndexLabelView(LoginRequiredMixin, ListView):
     model = Label
     context_object_name = "labels"
     extra_context = {
-        "title": "Метки",
-        "ID": "ID",
-        "name": "Имя",
-        "edit": "Изменить",
-        "delete": "Удалить",
-        "created_at": "Дата создания",
-        "submit": "Создать метку",
+        "title": _TITLE_INDEX,
+        **_UI_COMMON,
+        **_UI_ACTIONS,
+        "submit": _TITLE_CREATE,
     }
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
 
 
 class CreateLabelView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = LabelForm
-    template_name = "labels/create.html"
-    success_url = reverse_lazy("labels:index")  # <-- правильно
+    template_name = os.path.join("labels", "create.html")
+    success_url = reverse_lazy(_INDEX_PAGE)
     extra_context = {
-        "title": "Создать метку",
-        "submit": "Создать",
+        "title": _TITLE_CREATE,
+        "submit": _SUBMIT_CREATE,
     }
-    success_message = "Метка успешно создана"
+    success_message = _SUCCESS_CREATED
+    permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
 
 
 class UpdateLabelView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
     form_class = LabelForm
     template_name = os.path.join("labels", "create.html")
-    success_url = reverse_lazy("labels:index")
+    success_url = reverse_lazy(_INDEX_PAGE)
     extra_context = {
-        "title": "Изменение метки",
-        "submit": "Изменить",
+        "title": _TITLE_UPDATE,
+        "submit": _UI_ACTIONS["edit"],
     }
-    success_message = "Метка успешно изменена"
+    success_message = _SUCCESS_UPDATED
+    permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
 
 
 class DeleteLabelView(
     LoginRequiredMixin,
     CheckCascadeMixin,
     SuccessMessageMixin,
-    DeleteView
+    DeleteView,
 ):
     model = Label
     context_object_name = "label"
     template_name = os.path.join("labels", "delete.html")
-    success_url = reverse_lazy("labels:index")
+    success_url = reverse_lazy(_INDEX_PAGE)
     extra_context = {
-        "title": "Удаление метки",
-        "submit": "Да, удалить",
-        "confirm": "Вы уверены, что хотите удалить",
+        "title": _TITLE_DELETE,
+        "submit": _SUBMIT_DELETE,
+        "confirm": _CONFIRM_DELETE,
     }
-    success_message = "Метка успешно удалена"
-    protected_error_message = "Невозможно удалить метку, потому" \
-        " что она используется"
+    success_message = _SUCCESS_DELETED
+    permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
+    protected_error_message = _PROTECTED_ERROR_MESSAGE

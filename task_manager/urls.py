@@ -19,7 +19,6 @@ from django.contrib import admin
 from django.urls import path, include
 from .views import IndexView, LoginUser, LogoutUser
 
-
 urlpatterns = [
     path("", IndexView.as_view(), name="home"),
     path("admin/", admin.site.urls, name="admin"),
