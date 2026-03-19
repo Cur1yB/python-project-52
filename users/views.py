@@ -58,7 +58,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
         "title": _TITLE_REGISTER,
         "submit": _SUBMIT_REGISTER,
     }
-    success_message = "Пользователь успешно зарегистрирован"
+    success_message = _SUCCESS_REGISTERED
 
 
 class UserUpdateView(
