@@ -89,7 +89,13 @@
 </nav>
 
 <main role="main" class="container">
-    {% bootstrap_messages %}
+    {% if messages %}
+        <ul class="alert">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     {% block content %}
     {% endblock %}
 </main>
