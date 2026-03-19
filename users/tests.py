@@ -24,8 +24,8 @@ class TestUser(TestCase):
             "first_name": "test_name",
             "last_name": "testov",
             "username": "test_test",
-            "password1": "test123@q",
-            "password2": "test123@q",
+            "password1": "test123@q", # NOSONAR
+            "password2": "test123@q", # NOSONAR
         }
         total_users = User.objects.count()
 
@@ -44,15 +44,15 @@ class TestUser(TestCase):
         self.assertContains(response, self.user.last_name)
 
     def test_update_user(self):
-        self.user.set_password("OldPass123@")
+        self.user.set_password("OldPass123@") # NOSONAR
         self.user.save()
 
         update_user = {
             "first_name": self.user.first_name,
             "last_name": self.user.last_name,
             "username": "pupa",
-            "password1": "NewPass123@",
-            "password2": "NewPass123@",
+            "password1": "NewPass123@", # NOSONAR
+            "password2": "NewPass123@", # NOSONAR
         }
 
         self.client.force_login(user=self.user)

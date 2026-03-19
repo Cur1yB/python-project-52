@@ -34,6 +34,10 @@ _TASK_LIST_COLUMNS = {
     "created_at": "Дата создания",
 }
 
+_ROUTES = {
+    "tasks_index": "tasks:index",
+}
+
 
 class TaskIndexView(LoginRequiredMixin, FilterView, ListView):
     model = Task
@@ -51,7 +55,7 @@ class TaskIndexView(LoginRequiredMixin, FilterView, ListView):
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     form_class = TaskForm
     template_name = os.path.join("tasks", "create.html")
-    success_url = reverse("tasks:index")
+    success_url = reverse(_ROUTES["tasks_index"])
     extra_context = {
         "title": "Создать задачу",
         "submit": "Создать",
@@ -69,10 +73,10 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Task
     form_class = TaskForm
     template_name = os.path.join("tasks", "create.html")
-    success_url = reverse("tasks:index")
+    success_url = reverse(_ROUTES["tasks_index"])
     extra_context = {
         "title": "Изменение задачи",
-        "submit": _UI_ACTIONS["edit"],  # <-- нет литерала "Изменить"
+        "submit": _UI_ACTIONS["edit"],
     }
     success_message = "Задача успешно изменена"
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
@@ -84,7 +88,7 @@ class TaskDeleteView(
     model = Task
     template_name = os.path.join("tasks", "delete.html")
     context_object_name = "task"
-    success_url = reverse("tasks:index")
+    success_url = reverse(_ROUTES["tasks_index"])
     extra_context = {
         "title": "Удаление задачи",
         "submit": "Да, удалить",
@@ -104,6 +108,6 @@ class TaskDetail(LoginRequiredMixin, DetailView):
         "status": "Статус",
         "created": "Дата создания",
         "labels": "Метки",
-        **_UI_ACTIONS,  # <-- "edit"/"delete" берутся отсюда
+        **_UI_ACTIONS,
     }
     permission_denied_message = settings.LOGIN_REQUIRED_MESSAGE
