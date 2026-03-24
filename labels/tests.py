@@ -38,9 +38,15 @@ class TestLabels(TestCase):
         total_labels = Label.objects.count()
 
         self.client.force_login(self.user)
-        response = self.client.post(reverse_lazy("labels:create"), test_label_data)
+        response = self.client.post(
+            reverse_lazy("labels:create"),
+            test_label_data
+        )
 
-        self.assertRedirects(response, expected_url=reverse_lazy("labels:index"))
+        self.assertRedirects(
+            response,
+            expected_url=reverse_lazy("labels:index")
+        )
         test_label = Label.objects.latest("id")
         self.assertEqual(test_label.name, test_label_data["name"])
         self.assertEqual(Label.objects.count(), total_labels + 1)
@@ -86,7 +92,10 @@ class TestLabels(TestCase):
 
         self.client.force_login(user=self.user)
         response = self.client.post(
-            reverse_lazy("labels:delete", kwargs={"pk": self.label_obj.id})
+            reverse_lazy(
+                "labels:delete",
+                kwargs={"pk": self.label_obj.id}
+            )
         )
 
         messages = list(get_messages(response.wsgi_request))
@@ -96,5 +105,8 @@ class TestLabels(TestCase):
             "Невозможно удалить метку, потому что она используется",
         )
 
-        self.assertRedirects(response, expected_url=reverse_lazy("labels:index"))
+        self.assertRedirects(
+            response,
+            expected_url=reverse_lazy("labels:index")
+        )
         self.assertEqual(Label.objects.count(), total_labels)

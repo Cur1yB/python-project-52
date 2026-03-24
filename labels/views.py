@@ -37,7 +37,9 @@ _SUCCESS_CREATED = "Метка успешно создана"
 _SUCCESS_UPDATED = "Метка успешно изменена"
 _SUCCESS_DELETED = "Метка успешно удалена"
 
-_PROTECTED_ERROR_MESSAGE = "Невозможно удалить метку, потому что она используется"
+_PROTECTED_ERROR_MESSAGE = (
+    "Невозможно удалить метку, потому что она используется"
+)
 
 
 class IndexLabelView(LoginRequiredMixin, ListView):

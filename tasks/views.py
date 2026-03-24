@@ -38,6 +38,7 @@ _ROUTES = {
     "tasks_index": "tasks:index",
 }
 
+
 class TaskIndexView(LoginRequiredMixin, FilterView, ListView):
     model = Task
     filterset_class = TaskFilter

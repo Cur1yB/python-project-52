@@ -31,7 +31,6 @@ python_files = ["tests.py", "test_*.py", "*_tests.py"]
 
 [dependency-groups]
 dev = [
-    "black>=26.3.1",
     "flake8>=7.3.0",
     "ruff>=0.15.6",
 ]

@@ -9,7 +9,10 @@ from users.models import User
 
 class TaskFilter(FilterSet):
     status = ModelChoiceFilter(label="Статус", queryset=Status.objects.all())
-    executor = ModelChoiceFilter(label="Исполнитель", queryset=User.objects.all())
+    executor = ModelChoiceFilter(
+        label="Исполнитель",
+        queryset=User.objects.all()
+    )
     labels = ModelChoiceFilter(label="Метка", queryset=Label.objects.all())
     my_tasks = BooleanFilter(
         label="Только свои задачи",
